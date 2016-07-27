@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="yui-bc">
+		<ul class="yui-bc_items">
+			<li class="yui-bc_item">
+				<a class="yui-bc_link" href="/">Главная</a> <span class="yui-bc_divide">&rarr;</span>
+			</li>
+			<li class="yui-bc_item bc_item">
+				<a class="yui-bc_link" href="/departments">Департаменты</a> <span class="yui-bc_divide">&rarr;</span>
+			</li>
+			<li class="yui-bc_item bc_item--active">
+				<a class="yui-bc_link" href="">{{ department.name }}</a>
+			</li>
+		</ul>
+	</div>
+	<h1>{{ department.name }}</h1>
+	<h2>Сотрудники</h2>
+	<ul>
+		{% for employee in employees %}
+			<li><a href="/employees/{{ employee.id }}">{{ employee.fullname }}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}

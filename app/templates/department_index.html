@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="yui-bc">
+		<ul class="yui-bc_items">
+			<li class="yui-bc_item">
+				<a class="yui-bc_link" href="/">Главная</a> <span class="yui-bc_divide">&rarr;</span>
+			</li>
+			<li class="yui-bc_item bc_item--active">
+				<a class="yui-bc_link" href="">Департаменты</a>
+			</li>
+		</ul>
+	</div>
+	<h1>Департаменты</h1>
+	<ul>
+		{% for d in dep %}
+			<li><a href="/departments/{{ d.id }}">{{ d.name }}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}

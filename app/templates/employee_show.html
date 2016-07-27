@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="yui-bc">
+		<ul class="yui-bc_items">
+			<li class="yui-bc_item">
+				<a class="yui-bc_link" href="/">Главная</a> <span class="yui-bc_divide">&rarr;</span>
+			</li>
+			<li class="yui-bc_item bc_item">
+				<a class="yui-bc_link" href="/employees">Сотрудники</a> <span class="yui-bc_divide">&rarr;</span>
+			</li>
+			<li class="yui-bc_item bc_item--active">
+				<a class="yui-bc_link" href="">{{ employee.fullname }}</a>
+			</li>
+		</ul>
+	</div>
+	<h1>Сотрудник</h1>
+	<h2>ФИО: {{ employee.fullname }}</h2>
+	<h2>Дата рождения: {{ employee.birthday }}</h2>
+	<h2>Департамент: {{ department.name }}</h2>
+
+{% endblock %}

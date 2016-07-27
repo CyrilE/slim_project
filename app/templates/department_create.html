@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="yui-bc">
+		<ul class="yui-bc_items">
+			<li class="yui-bc_item">
+				<a class="yui-bc_link" href="/">Главная</a> <span class="yui-bc_divide">&rarr;</span>
+			</li>
+			<li class="yui-bc_item">
+				<a class="yui-bc_link" href="/departments">Департаменты</a>
+			</li>
+			<li class="yui-bc_item bc_item--active">
+				<a class="yui-bc_link" href="">Создать департамент</a>
+			</li>
+		</ul>
+	</div>
+	<h1>Создать департамент</h1>
+	<form method="POST" action="/departments">
+		Название: <input type="text" name="name">
+		<input type="submit" value="Создать">
+	</form>
+	
+{% endblock %}
