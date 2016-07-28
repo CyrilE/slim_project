@@ -11,10 +11,19 @@
 			</li>
 		</ul>
 	</div>
-	<h1>Сотрудники</h1>
-	<ul>
-		{% for employee in employees %}
-			<li><a href="/employees/{{ employee.id }}">{{ employee.fullname }}</a></li>
-		{% endfor %}
-	</ul>
+	<div class="yui-row"></div>
+	<div class="yui-block yui-block--yellow">
+		<div class="yui-block_header">Сотрудники</div>
+		<div class="yui-block_body">
+			<div style="padding-left: 20px;">
+				<ul>
+					{% for employee in employees %}
+						<li><a href="/employees/{{ employee.id }}">{{ employee.fullname }}</a></li>
+					{% endfor %}
+				</ul>
+
+				<a href="/employees/create" class="yui-btn yui-btn--green">Добавить</a>
+			</div>
+		</div>
+	</div>	
 {% endblock %}

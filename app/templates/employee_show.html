@@ -14,9 +14,23 @@
 			</li>
 		</ul>
 	</div>
-	<h1>Сотрудник</h1>
-	<h2>ФИО: {{ employee.fullname }}</h2>
-	<h2>Дата рождения: {{ employee.birthday }}</h2>
-	<h2>Департамент: {{ department.name }}</h2>
+	<div class="yui-row"></div>
+	<div class="yui-block yui-block--yellow">
+		<div class="yui-block_header">Сотрудник - {{ employee.fullname }}</div>
+		<div class="yui-block_body">
+			<div style="padding-left: 20px;">
+				<h3>ФИО: {{ employee.fullname }}</h3>
+				<h3>Дата рождения: {{ employee.birthday }}</h3>
+				<h3>Департамент: <a href="/departments/{{ department.id }}">{{ department.name }}</a></h3>
 
+				<a href="/employees/{{ employee.id }}/edit" class="yui-btn yui-btn--icon yui-btn--blue"><span class="yui-icon-edit"></span>Редактировать</a>
+				<button class="yui-btn yui-btn--icon yui-btn--red delete"><span class="yui-icon-delete"></span>Удалить</button>
+			</div>
+		</div>
+	</div>
+
+	<form style="display: hidden" action="/employees/{{ employee.id }}" method="POST" id="formDelete">
+  		<input type="hidden" name="_METHOD" value="DELETE">
+	</form>
+	
 {% endblock %}

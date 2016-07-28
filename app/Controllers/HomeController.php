@@ -23,6 +23,8 @@ class HomeController
 
 	public function reports($request, $response, $args)
 	{
-
+		$departments = RedBean::getAll('SELECT departments.name as name, COUNT(employees.id) as count, ROUND(AVG(TIMESTAMPDIFF(YEAR, employees.birthday, curdate()))) as avg FROM departments, employees WHERE departments.id = employees.departments_id GROUP BY departments.name');
+		
+		echo $this->view->render('reports.html', array('departments' => $departments));		
 	}
 }

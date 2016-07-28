@@ -25,6 +25,10 @@ class DepartmentController
 	public function show($request, $response, $args)
 	{
 		$id = $request->getAttribute('id');
+		$count = RedBean::count('departments', 'id = ?', [ $id ]);
+		if ($count == 0){
+			return $response->withStatus(404)->withHeader('Content-Type', 'text/html')->write('Page not found');
+		}
 		$department = RedBean::load('departments', $id);
 		$employees = $department->ownEmployeesList;
 		echo $this->view->render('department_show.html', array('department' => $department, 'employees' => $employees));
@@ -34,12 +38,18 @@ class DepartmentController
 	
 	public function edit($request, $response, $args)
 	{
-		
+		$department = RedBean::load('departments', $request->getAttribute('id'));
+		echo $this->view->render('department_edit.html', array('department' => $department));
 	}
 
 	public function update($request, $response, $args)
 	{
-		
+		$data = $request->getParsedBody();
+		$department = RedBean::load('departments', $request->getAttribute('id'));
+		$department->name = $data['name'];
+		RedBean::store($department);
+
+		return $response;
 	}
 
 	public function create($request, $response, $args)
@@ -49,9 +59,8 @@ class DepartmentController
 		return $response;		
 	}
 
-	public function store(Request $request, Response $response, $args)
+	public function store($request, $response, $args)
 	{
-		//var_dump($request);
 		$department = RedBean::dispense('departments');
 		$data = $request->getParsedBody();
 		$department->name = $data['name'];
@@ -62,6 +71,9 @@ class DepartmentController
 
 	public function delete($request, $response, $args)
 	{
-		
+		$department = RedBean::load('departments', $request->getAttribute('id'));
+		RedBean::trash($department);
+
+		return $response;
 	}
 }

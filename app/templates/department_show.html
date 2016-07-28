@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
 	<div class="yui-bc">
 		<ul class="yui-bc_items">
 			<li class="yui-bc_item">
@@ -14,11 +15,32 @@
 			</li>
 		</ul>
 	</div>
-	<h1>{{ department.name }}</h1>
-	<h2>Сотрудники</h2>
-	<ul>
-		{% for employee in employees %}
-			<li><a href="/employees/{{ employee.id }}">{{ employee.fullname }}</a></li>
-		{% endfor %}
-	</ul>
+	<div class="yui-row"></div>
+	<div class="yui-block yui-block--blue">
+		<div class="yui-block_header">{{ department.name }}</div>
+		<div class="yui-block_body">
+			<div style="padding-left: 20px;">
+				{% if employees|length == 0 %}
+					<p>Сотрудники отсутствуют</p>
+				{% endif %}
+				{% if employees|length > 0 %}
+					<h3>Сотрудники</h3>
+					<ul>
+						{% for employee in employees %}
+							<li><a href="/employees/{{ employee.id }}">{{ employee.fullname }}</a></li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+
+				<a href="/departments/{{ department.id }}/edit" class="yui-btn yui-btn--blue">Редактировать</a>
+				<button class="yui-btn yui-btn--red delete">Удалить</button>
+			</div>
+		</div>
+	</div>
+	
+
+	<form style="display: hidden" action="/departments/{{ department.id }}" method="POST" id="formDelete">
+  		<input type="hidden" name="_METHOD" value="DELETE">
+	</form>
+
 {% endblock %}

@@ -11,10 +11,18 @@
 			</li>
 		</ul>
 	</div>
-	<h1>Департаменты</h1>
-	<ul>
-		{% for d in dep %}
-			<li><a href="/departments/{{ d.id }}">{{ d.name }}</a></li>
-		{% endfor %}
-	</ul>
+	<div class="yui-row"></div>
+	<div class="yui-block yui-block--blue">
+		<div class="yui-block_header">Департаменты</div>
+		<div class="yui-block_body">
+			<div style="padding-left: 20px;">
+				{% for d in dep %}
+					<p><a href="/departments/{{ d.id }}">{{ d.name }}</a></p>
+				{% endfor %}
+
+				<a href="/departments/create" class="yui-btn yui-btn--green">Добавить</a>
+			</div>
+		</div>
+	</div>
+	
 {% endblock %}
